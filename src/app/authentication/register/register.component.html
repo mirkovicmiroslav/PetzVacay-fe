@@ -1,0 +1,97 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2>Registration</h2>
+        <form class="form-register" #signUpForm="ngForm">
+          <div class="form-group">
+            <label>First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              [(ngModel)]="userData.firstName"
+              id="firstName"
+              #firstName="ngModel"
+              class="form-control"
+              placeholder="First name"
+              required
+            />
+            <span *ngIf="firstName.errors?.required && firstName.touched" class="text-danger">
+              First Name is required
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              [(ngModel)]="userData.lastName"
+              id="lastName"
+              #lastName="ngModel"
+              class="form-control"
+              placeholder="Last name"
+              required
+            />
+            <span *ngIf="lastName.errors?.required && lastName.touched" class="text-danger">Last Name is required</span>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              email
+              [(ngModel)]="userData.email"
+              id="email"
+              #email="ngModel"
+              class="form-control"
+              placeholder="Email address"
+              required
+            />
+            <span *ngIf="email.errors?.required && email.touched" class="text-danger">Email address is required</span>
+            <span *ngIf="email.errors?.email && email.touched" class="text-danger">Email must be a valid email address</span>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="userData.password"
+              id="password"
+              #password="ngModel"
+              class="form-control"
+              placeholder="Password"
+              minlength="6"
+              required
+            />
+            <span *ngIf="password.errors?.required && password.touched" class="text-danger">Password is required</span>
+            <span *ngIf="password.errors?.minlength" class="text-danger">Password must be at least 6 characters</span>
+          </div>
+          <div class="form-group">
+            <label>Password confirm</label>
+            <input
+              type="password"
+              name="repeatPassword"
+              [(ngModel)]="rPassword"
+              id="repeatPassword"
+              #repeatPassword="ngModel"
+              class="form-control"
+              placeholder="Password confirm"
+              minlength="6"
+              required
+            />
+            <span *ngIf="repeatPassword.errors?.required && repeatPassword.touched" class="text-danger">
+              Repeat password is required
+            </span>
+            <span *ngIf="repeatPassword.errors?.minlength" class="text-danger">Password must be at least 6 characters</span>
+          </div>
+          <div class="form-group">
+            <button [disabled]="!signUpForm.valid" class="btn btn-primary" (click)="onRegister()">
+              Register
+            </button>
+            <a routerLink="/" class="btn btn-link">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

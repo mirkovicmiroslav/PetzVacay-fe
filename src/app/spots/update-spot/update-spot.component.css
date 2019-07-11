@@ -1,0 +1,144 @@
+h2 {
+  text-align: center;
+  color: #5d79d3;
+}
+
+.contact100-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5%;
+}
+.contact100-form-title {
+  display: block;
+  width: 100%;
+  font-family: Montserrat-Black;
+  font-size: 39px;
+  color: #5d79d3;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.wrap-input100 {
+  width: 70%;
+  position: relative;
+  padding: 10px 30px 9px 22px;
+  margin-bottom: 20px;
+}
+
+.input100 {
+  display: block;
+  width: 100%;
+  background: transparent;
+  font-family: Montserrat-SemiBold;
+  font-size: 18px;
+  background-color: #f7f7f7;
+  color: #555555;
+  line-height: 1.2;
+  padding-right: 15px;
+}
+
+.input101 {
+  display: block;
+  width: 100%;
+  background: transparent;
+  color: #555555;
+  line-height: 1.2;
+  padding-left: 19px;
+}
+
+input.input100 {
+  height: 40px;
+}
+
+textarea.input100 {
+  background: white;
+  min-height: 120px;
+  padding-top: 9px;
+  padding-bottom: 13px;
+}
+
+.container-contact100-form-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: right;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.contact100-form-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 20%;
+  height: 50px;
+  background-color: #2348c2;
+  border-radius: 25px;
+  margin-left: auto;
+
+  font-family: Montserrat-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.bo:hover {
+  background-color: #5d79d3;
+}
+
+@media (max-width: 768px) {
+  .rs1-wrap-input100 {
+    width: 100%;
+  }
+}
+
+img {
+  border-radius: 50%;
+}
+
+@media (max-width: 576px) {
+  .wrap-contact100 {
+    padding: 62px 15px 90px 15px;
+  }
+
+  .wrap-input100 {
+    padding: 10px 10px 9px 10px;
+  }
+}
+
+.profImg {
+  width: 40%;
+  height: 40%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: -13%;
+}
+
+.uploadImg {
+  width: 15%;
+  height: 15%;
+  margin-left: 3%;
+  margin-top: 11%;
+  margin-bottom: -12%;
+  padding: 0%;
+}

@@ -1,0 +1,122 @@
+<div class="container-contact100">
+  <div class="wrap-contact100">
+    <form #stepOneForm="ngForm" class="contact100-form">
+      <span class="contact100-form-title">
+        Step One
+        <h3>Account info</h3>
+      </span>
+      <div class="wrap-input100">
+        <span style="color:grey">Service Address *</span>
+        <input
+          type="text"
+          name="serviceAddress"
+          class="form-control"
+          [(ngModel)]="userInfo.serviceAddress"
+          placeholder="Enter your service address here..."
+          id="serviceAddress"
+          #serviceAddress="ngModel"
+          required
+        />
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="serviceAddress.errors?.required && serviceAddress.touched"
+          class="text-danger"
+          >Service address is required</span
+        >
+      </div>
+      <div class="wrap-input100">
+        <span style="color:grey">Country *</span>
+        <select id="country" name="country" class="form-control" [(ngModel)]="userInfo.country" #country="ngModel" required>
+          <option disabled selected value>Choose...</option>
+          <option>Albania</option>
+          <option>Australia</option>
+          <option>Austria</option>
+          <option>Bosnia and Herzegovina</option>
+          <option>Bulgaria</option>
+          <option>Croatia</option>
+          <option>Greece</option>
+          <option>Serbia</option>
+          <option>Slovenia</option>
+          <option>Macedonia</option>
+          <option>Montenegro</option>
+        </select>
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="country.errors?.required && country.touched"
+          class="text-danger"
+          >Country is required</span
+        >
+      </div>
+      <div class="wrap-input100">
+        <span style="color:grey">City *</span>
+        <input
+          type="text"
+          name="city"
+          class="form-control"
+          [(ngModel)]="userInfo.city"
+          placeholder="Enter your city code here..."
+          id="city"
+          #city="ngModel"
+          required
+        />
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="city.errors?.required && city.touched"
+          class="text-danger"
+          >City is required</span
+        >
+      </div>
+      <div class="wrap-input100 bg1">
+        <span style="color:grey">Zip code</span>
+        <input
+          type="text"
+          name="postalCode"
+          class="form-control"
+          [(ngModel)]="userInfo.postalCode"
+          placeholder="Enter your zip code here..."
+          id="postalCode"
+          #postalCode="ngModel"
+          pattern="[0-9]+"
+        />
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="postalCode.errors?.pattern && postalCode.touched"
+          class="text-danger"
+          >Zip code must be numeric</span
+        >
+      </div>
+      <div class="wrap-input100 bg1">
+        <span style="color:grey">Phone Number</span>
+        <input
+          type="text"
+          name="phoneNumber"
+          class="form-control"
+          [(ngModel)]="userInfo.phoneNumber"
+          placeholder="Enter your phone number here..."
+          id="phoneNumber"
+          #phoneNumber="ngModel"
+          pattern="[0-9]+"
+        />
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="phoneNumber.errors?.pattern && phoneNumber.touched"
+          class="text-danger"
+          >Phone number must be numeric</span
+        >
+      </div>
+      <div class="container-contact100-form-btn">
+        <button [disabled]="!stepOneForm.valid" class="contact100-form-btn" type="submit" (click)="onSubmitStepOne()">
+          <span>
+            Continue
+            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

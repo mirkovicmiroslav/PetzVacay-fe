@@ -1,0 +1,171 @@
+<div class="container-contact100">
+  <div class="wrap-contact100">
+    <form #stepThreeForm="ngForm" class="contact100-form validate-form">
+      <span class="contact100-form-title">
+        Step Three
+        <h3>Pet Sitter info</h3>
+      </span>
+      <div class="wrap-input100 validate-input bg1">
+        <span style="color:grey">Profile image</span>
+        <input
+          class="input100"
+          type="file"
+          name="profileImage"
+          id="profileImage"
+          #profileImage
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <div
+        class="wrap-input100 validate-input bg0 rs1-alert-validate"
+        data-validate="Please Type Your Description"
+      >
+        <span style="color:grey">Short Description *</span>
+        <textarea
+          class="input100"
+          type="textarea"
+          name="shortDescription"
+          [(ngModel)]="petSitterInfo.shortDescription"
+          placeholder="About you..."
+          id="shortDescription"
+          #shortDescription="ngModel"
+          placeholder="Your description here"
+          required
+        ></textarea>
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="shortDescription.errors?.required && shortDescription.touched"
+          class="text-danger"
+          >Short description is required</span
+        >
+      </div>
+
+      <div
+        class="wrap-input100 validate-input bg0 rs1-alert-validate"
+        data-validate="Please Type Your Experience"
+      >
+        <span style="color:grey">Experience</span>
+        <textarea
+          class="input100"
+          type="textarea"
+          name="experience"
+          [(ngModel)]="petSitterInfo.experience"
+          id="experience"
+          #experience="ngModel"
+          placeholder="Enter your experience with pets here..."
+        ></textarea>
+        <span
+          class="validation-message"
+          style="text-align: justify; display:block;"
+          *ngIf="experience.errors?.required && experience.touched"
+          class="text-danger"
+          >Experience is required</span
+        >
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">Facebook</span>
+        <input
+          class="input100"
+          type="text"
+          name="socialMediaFacebook"
+          [(ngModel)]="petSitterInfo.socialMediaFacebook"
+          id="socialMediaFacebook"
+          #socialMediaFacebook="ngModel"
+          placeholder="Link to Your facebook profile"
+        />
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">Instagram</span>
+        <input
+          class="input100"
+          type="text"
+          name="socialMediaInstagram"
+          [(ngModel)]="petSitterInfo.socialMediaInstagram"
+          id="socialMediaInstagram"
+          #socialMediaInstagram="ngModel"
+          placeholder="Link to Your instagram profile"
+        />
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">Twitter</span>
+        <input
+          class="input100"
+          type="text"
+          name="socialMediaTwitter"
+          [(ngModel)]="petSitterInfo.socialMediaTwitter"
+          id="socialMediaTwitter"
+          #socialMediaTwitter="ngModel"
+          placeholder="Link to Your twitter profile"
+        />
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">Website</span>
+        <input
+          class="input100"
+          type="text"
+          name="socialMediaWebsite"
+          [(ngModel)]="petSitterInfo.socialMediaWebsite"
+          id="socialMediaWebsite"
+          #socialMediaWebsite="ngModel"
+          placeholder="Link to Your website"
+        />
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">First reference</span>
+        <input
+          class="input100"
+          type="text"
+          name="referenceFirst"
+          [(ngModel)]="petSitterInfo.referenceFirst"
+          id="referenceFirst"
+          #referenceFirst="ngModel"
+          placeholder="Full name of your first reference here..."
+        />
+      </div>
+
+      <div class="wrap-input100 bg1 rs1-wrap-input100">
+        <span style="color:grey">Second reference</span>
+        <input
+          class="input100"
+          type="text"
+          name="referenceSecond"
+          [(ngModel)]="petSitterInfo.referenceSecond"
+          id="referenceSecond"
+          #referenceSecond="ngModel"
+          placeholder="Full name of your second reference here..."
+        />
+      </div>
+
+      <div class="container-contact100-form-btn">
+        <button
+          type="button"
+          class="contact100-form-btn-left"
+          (click)="onBackToStepTwo()"
+        >
+          <span>
+            Back
+            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+          </span>
+        </button>
+        <button
+          class="contact100-form-btn"
+          [disabled]="!stepThreeForm.valid"
+          type="submit"
+          (click)="onFinish()"
+        >
+          <span>
+            Finish
+            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

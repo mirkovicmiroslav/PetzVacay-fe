@@ -1,0 +1,202 @@
+<div class="container">
+  <h2>
+    Create spot
+  </h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <form #addSpot="ngForm" class="contact100-form">
+            <div class="wrap-input100">
+              <span style="color:grey">Spot date *</span>
+              <input type="date" name="date" class="form-control" [(ngModel)]="newSpot.date" id="date" #date="ngModel" required />
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="date.errors?.required && date.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div class="wrap-input100">
+              <span style="color:grey">What kind of service would you like to offer? *</span>
+              <select id="service" name="service" class="form-control" [(ngModel)]="newSpot.service" #service="ngModel" required>
+                <option selected disabled value>Choose...</option>
+                <option *ngFor="let s of serviceTypes.services" [value]="s.idService">{{ s.description }}</option>
+              </select>
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="service.errors?.required && service.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+
+            <div class="wrap-input100">
+              <span style="color:grey">When are you available for providing services? *</span>
+              <select
+                id="unit"
+                name="unit"
+                class="form-control"
+                [(ngModel)]="newSpot.unit"
+                #unit="ngModel"
+                (change)="onChangeUnit(unit.value)"
+                required
+              >
+                <option selected disabled value>Choose...</option>
+                <option>Day</option>
+                <option>Session</option>
+              </select>
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="unit.errors?.required && unit.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div class="wrap-input100">
+              <span style="color:grey"
+                >How much would you like to charge for your services? * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b
+                  >EUR / {{ newUnit }}</b
+                ></span
+              >
+              <input
+                type="text"
+                name="pricePerUnit"
+                class="form-control"
+                [(ngModel)]="newSpot.pricePerUnit"
+                id="pricePerUnit"
+                #pricePerUnit="ngModel"
+                required
+                pattern="[0-9]+"
+              />
+
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="pricePerUnit.errors?.required && pricePerUnit.touched"
+                class="text-danger"
+                >Required</span
+              >
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="pricePerUnit.errors?.pattern && pricePerUnit.touched"
+                class="text-danger"
+                >Invalid input</span
+              >
+            </div>
+            <div class="wrap-input100">
+              <span style="color:grey">Frequency? *</span>
+              <select
+                id="frequency"
+                name="frequency"
+                class="form-control"
+                [(ngModel)]="newSpot.frequency"
+                #frequency="ngModel"
+                required
+              >
+                <option disabled selected value>Choose...</option>
+                <option>One time only</option>
+                <option>Every Day</option>
+                <option>On Working Days</option>
+                <option>Every Week</option>
+                <option>Every Month</option>
+              </select>
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="frequency.errors?.required && frequency.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div *ngIf="newSpot.frequency && newSpot.frequency != 'One time only'" class="wrap-input100">
+              <span style="color:grey">End date *</span>
+              <input
+                type="date"
+                name="endDate"
+                class="form-control"
+                [(ngModel)]="newSpot.endDate"
+                id="endDate"
+                #endDate="ngModel"
+                required
+              />
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="endDate.errors?.required && endDate.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div *ngIf="newSpot.frequency == 'Every Week'" class="wrap-input100">
+              <span style="color:grey">Day of week *</span>
+              <select
+                id="dayOfWeek"
+                name="dayOfWeek"
+                class="form-control"
+                [(ngModel)]="newSpot.dayOfWeek"
+                #dayOfWeek="ngModel"
+                required
+              >
+                <option disabled selected value>Choose...</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+              </select>
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="dayOfWeek.errors?.required && dayOfWeek.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div *ngIf="newSpot.frequency == 'Every Month'" class="wrap-input100">
+              <span style="color:grey">Day of month *</span>
+              <select
+                id="dayOfMonth"
+                name="dayOfMonth"
+                class="form-control"
+                [(ngModel)]="newSpot.dayOfMonth"
+                #dayOfMonth="ngModel"
+                required
+              >
+                <option disabled selected value>Choose...</option>
+                <option *ngFor="let num of daysOfMonth">{{ num }}</option>
+              </select>
+              <span
+                class="validation-message"
+                style="text-align: justify; display:block;"
+                *ngIf="dayOfMonth.errors?.required && dayOfMonth.touched"
+                class="text-danger"
+                >Required</span
+              >
+            </div>
+            <div class="wrap-input100">
+              <button
+                [disabled]="!addSpot.valid"
+                class="btn btn-secondary bo"
+                style="float: right;"
+                type="submit"
+                (click)="createSpot()"
+              >
+                <span>
+                  Create spot
+                  <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

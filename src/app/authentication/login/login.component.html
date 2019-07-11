@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="jumbotron">
+    <form class="form-signin" #loginForm="ngForm">
+      <img class="mb-4" src="assets/logo_petzvacay.png" alt="" width="160" height="160" />
+      <h1 class="h3 mb-3 font-weight-normal">Welcome back to PetzVacay!</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input
+        type="email"
+        name="email"
+        email
+        [(ngModel)]="loginData.email"
+        id="email"
+        #email="ngModel"
+        class="form-control"
+        placeholder="Email address"
+        required
+      />
+      <span
+        class="validation-message"
+        style="text-align: justify; display:block;"
+        *ngIf="email.errors?.required && email.touched"
+        class="text-danger"
+        >Email is required</span
+      >
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="loginData.password"
+        id="password"
+        #password="ngModel"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+      <span
+        class="validation-message"
+        style="text-align: justify; display:block;"
+        *ngIf="password.errors?.required && password.touched"
+        class="text-danger"
+        >Password is required</span
+      >
+      <div>
+        <a style="float:left;" routerLink="/forgotPassword" class="btn btn-link">Forgot your password?</a><br />
+        <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" (click)="onLogin()">
+          Login
+        </button>
+        Don't Have an Account?
+        <a routerLink="/register" class="btn btn-link">Sign up</a>
+      </div>
+    </form>
+  </div>
+</div>

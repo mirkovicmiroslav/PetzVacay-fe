@@ -1,0 +1,10 @@
+<div class="container">
+  <ng-container *ngIf="options">
+    <ng-fullcalendar
+      #fullcalendar
+      (dateClick)="dateClick($event)"
+      (eventClick)="eventClick($event)"
+      [options]="options"
+    ></ng-fullcalendar>
+  </ng-container>
+</div>

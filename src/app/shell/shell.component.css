@@ -1,0 +1,15 @@
+.jumbotron {
+  background-image: url(/../../../assets/petsitter.png);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+img {
+  border-radius: 50%;
+}

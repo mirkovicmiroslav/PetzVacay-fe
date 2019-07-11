@@ -1,0 +1,35 @@
+<h2>My Calendar</h2>
+<app-custom-calendar [options]="calendarInfo" (datePicked)="getUserSpotsByDate($event)"></app-custom-calendar>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="label-lg">Spots for {{ date }}</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let service of userSpotsByDate.spots">
+          <div class="row">
+            <div class="col-9">
+              <p class="label-lg-l">Service:</p>
+              <p class="float-right primary-text-spot">{{ service.service }}</p>
+              <p class="label-lg-l">Unit:</p>
+              <div>
+                <p class="float-right primary-text-spot">{{ service.unit }}</p>
+                <p class="label-lg-l">Price:</p>
+                <p class="float-right primary-text-spot">{{ service.pricePerUnit }} $ /{{ service.unit }}</p>
+              </div>
+            </div>
+            <div class="col-3">
+              <button class="btn-spot" data-dismiss="modal" type="button" (click)="onEdit()">Edit</button>
+              <button class="btn-spot-red" data-dismiss="modal" type="button" (click)="onDelete()">Delete</button>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

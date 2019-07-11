@@ -1,0 +1,368 @@
+<section id="tabs" class="project-tab">
+  <nav>
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+      <a
+        class="nav-item nav-link active"
+        id="nav-home-tab"
+        data-toggle="tab"
+        href="#nav-home"
+        role="tab"
+        aria-controls="nav-home"
+        aria-selected="true"
+        >My profile</a
+      >
+
+      <a
+        *ngIf="isPetSitter"
+        class="nav-item nav-link"
+        id="nav-profile-tab"
+        data-toggle="tab"
+        href="#nav-profile"
+        role="tab"
+        aria-controls="nav-profile"
+        aria-selected="false"
+        >My Pet Sitter profile</a
+      >
+    </div>
+    <div class="profImg">
+      <img class="mb-5" *ngIf="userHasProfileImage" [src]="profileImg" alt="" width="190" height="190" />
+      <img class="mb-5" *ngIf="!userHasProfileImage" src="assets/logo_user.png" alt="" width="200" height="190" />
+    </div>
+
+    <div class="uploadImg">
+      <button class="btn btn-link" (click)="profileImage.click()">Change profile picture</button>
+      <input class="d-none" type="file" name="profileImage" id="profileImage" #profileImage (change)="onFileSelected($event)" />
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <form #updatePetOwner="ngForm" class="contact100-form">
+              <div class="wrap-input100 rs1-wrap-input100">
+                <span style="color:grey">First Name *</span>
+                <input
+                  type="text"
+                  name="firstName"
+                  class="form-control"
+                  [(ngModel)]="petOwnerInfo.firstName"
+                  placeholder="Enter your first name here..."
+                  id="firstName"
+                  #firstName="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="firstName.errors?.required && firstName.touched"
+                  class="text-danger"
+                  >First Name is required</span
+                >
+              </div>
+              <div class="wrap-input100 rs1-wrap-input100">
+                <span style="color:grey">Last Name *</span>
+                <input
+                  type="text"
+                  name="lastName"
+                  class="form-control"
+                  [(ngModel)]="petOwnerInfo.lastName"
+                  placeholder="Enter your last name here..."
+                  id="lastName"
+                  #lastName="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="lastName.errors?.required && lastName.touched"
+                  class="text-danger"
+                  >Last Name is requeired</span
+                >
+              </div>
+
+              <div class="wrap-input100 rs1-wrap-input101">
+                <span style="color:grey">Country</span>
+                <select id="country" name="country" class="form-control" [(ngModel)]="petOwnerInfo.country" #country="ngModel">
+                  <option selected disabled value>Choose...</option>
+                  <option>Albania</option>
+                  <option>Australia</option>
+                  <option>Austria</option>
+                  <option>Bosnia and Herzegovina</option>
+                  <option>Bulgaria</option>
+                  <option>Croatia</option>
+                  <option>Greece</option>
+                  <option>Serbia</option>
+                  <option>Slovenia</option>
+                  <option>Macedonia</option>
+                  <option>Montenegro</option>
+                </select>
+              </div>
+              <div class="wrap-input100 rs1-wrap-input101">
+                <span style="color:grey">City</span>
+                <input
+                  type="text"
+                  name="city"
+                  class="form-control"
+                  [(ngModel)]="petOwnerInfo.city"
+                  placeholder="Enter your city here..."
+                  id="city"
+                  #city="ngModel"
+                />
+              </div>
+              <div class="wrap-input100 rs1-wrap-input101">
+                <span style="color:grey">Zip code</span>
+                <input
+                  type="text"
+                  name="postalCode"
+                  class="form-control"
+                  [(ngModel)]="petOwnerInfo.postalCode"
+                  placeholder="Enter your zip code here..."
+                  id="postalCode"
+                  #postalCode="ngModel"
+                  pattern="[0-9]+"
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="postalCode.errors?.pattern && postalCode.touched"
+                  class="text-danger"
+                  >Invalid input</span
+                >
+              </div>
+              <div class="wrap-input100">
+                <span style="color:grey">Address</span>
+                <input
+                  type="text"
+                  name="address"
+                  class="form-control"
+                  [(ngModel)]="petOwnerInfo.address"
+                  placeholder="Enter your address here..."
+                  id="address"
+                  #address="ngModel"
+                />
+              </div>
+              <div class="wrap-input100">
+                <span style="color:grey">About me and my pet(s)</span>
+                <textarea
+                  class="form-control"
+                  type="textarea"
+                  name="description"
+                  [(ngModel)]="petOwnerInfo.description"
+                  placeholder="Short Description"
+                  id="description"
+                  #description="ngModel"
+                  placeholder="Enter your description here..."
+                ></textarea>
+              </div>
+              <div class="wrap-input100">
+                <button
+                  [disabled]="!updatePetOwner.valid"
+                  class="btn btn-secondary bo"
+                  style="float: right;"
+                  type="submit"
+                  (click)="onUpdatePetOwner()"
+                >
+                  <span>
+                    Save changes
+                    <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <form #updatePetSitter="ngForm" class="contact100-form">
+              <div class="wrap-input100 rs1-wrap-input100">
+                <span style="color:grey">About you *</span>
+                <textarea
+                  rows="3"
+                  class="form-control"
+                  type="textarea"
+                  name="shortDescription"
+                  [(ngModel)]="petSitterInfo.shortDescription"
+                  id="shortDescription"
+                  #shortDescription="ngModel"
+                  placeholder="About you..."
+                  required
+                ></textarea>
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="shortDescription.errors?.required && shortDescription.touched"
+                  class="text-danger"
+                  >Short description is required</span
+                >
+              </div>
+              <div class="wrap-input100 rs1-wrap-input100">
+                <span style="color:grey">Experience with pets *</span>
+                <textarea
+                  rows="3"
+                  class="form-control"
+                  type="textarea"
+                  name="experience"
+                  [(ngModel)]="petSitterInfo.experience"
+                  id="experience"
+                  #experience="ngModel"
+                  placeholder="Enter your experience with pets here..."
+                  required
+                ></textarea>
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="experience.errors?.required && experience.touched"
+                  class="text-danger"
+                  >Experience is required</span
+                >
+              </div>
+              <div class="input101">
+                <span class="note" style="color:grey"
+                  ><i><b>Services I'm offering *</b></i></span
+                >
+              </div>
+              <div class="wrap-input100 bg1 rs1-wrap-input100" *ngFor="let service of serviceTypes.services; let i = index">
+                <div class="funkyradio">
+                  <div class="funkyradio-default">
+                    <input
+                      type="checkbox"
+                      name="{{ service.idService }}"
+                      class="form-control"
+                      [(ngModel)]="serviceTypes.services[i].checked"
+                      id="{{ service.idService }}"
+                      (change)="onChangeServiceType()"
+                    />
+                    <label for="{{ service.idService }}">{{ service.description }}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Service Address</span>
+                <input
+                  type="text"
+                  name="serviceAddress"
+                  class="form-control"
+                  [(ngModel)]="petSitterInfo.serviceAddress"
+                  placeholder="Enter your service address here..."
+                  id="serviceAddress"
+                  #serviceAddress="ngModel"
+                />
+              </div>
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Phone Number</span>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  class="form-control"
+                  [(ngModel)]="petSitterInfo.phoneNumber"
+                  placeholder="Enter your phone number here..."
+                  id="phoneNumber"
+                  #phoneNumber="ngModel"
+                  pattern="[0-9]+"
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="phoneNumber.errors?.pattern && phoneNumber.touched"
+                  class="text-danger"
+                  >Invalid input</span
+                >
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Facebook</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="socialMediaFacebook"
+                  [(ngModel)]="petSitterInfo.socialMediaFacebook"
+                  id="socialMediaFacebook"
+                  #socialMediaFacebook="ngModel"
+                  placeholder="Enter link to your facebook profile..."
+                />
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Instagram</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="socialMediaInstagram"
+                  [(ngModel)]="petSitterInfo.socialMediaInstagram"
+                  id="socialMediaInstagram"
+                  #socialMediaInstagram="ngModel"
+                  placeholder="Enter link to your instagram profile..."
+                />
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Twitter</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="socialMediaTwitter"
+                  [(ngModel)]="petSitterInfo.socialMediaTwitter"
+                  id="socialMediaTwitter"
+                  #socialMediaTwitter="ngModel"
+                  placeholder="Enter link to your twitter profile..."
+                />
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Website</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="socialMediaWebsite"
+                  [(ngModel)]="petSitterInfo.socialMediaWebsite"
+                  id="socialMediaWebsite"
+                  #socialMediaWebsite="ngModel"
+                  placeholder="Enter link to your website profile..."
+                />
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">First reference</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="referenceFirst"
+                  [(ngModel)]="petSitterInfo.referenceFirst"
+                  id="referenceFirst"
+                  #referenceFirst="ngModel"
+                  placeholder="Enter full name of your first reference here..."
+                />
+              </div>
+
+              <div class="wrap-input100 bg1 rs1-wrap-input100">
+                <span style="color:grey">Second reference</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="referenceSecond"
+                  [(ngModel)]="petSitterInfo.referenceSecond"
+                  id="referenceSecond"
+                  #referenceSecond="ngModel"
+                  placeholder="Enter full name of your second reference here..."
+                />
+              </div>
+              <div class="wrap-input100">
+                <button
+                  [disabled]="!updatePetSitter.valid"
+                  class="btn btn-secondary bo"
+                  style="float: right;"
+                  type="submit"
+                  (click)="onUpdatePetSitter()"
+                >
+                  <span>
+                    Save changes
+                    <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

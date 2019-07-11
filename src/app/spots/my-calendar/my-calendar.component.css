@@ -1,0 +1,49 @@
+h2 {
+  text-align: center;
+  color: #5d79d3;
+}
+.label-lg,
+.label-lg-r {
+  font-size: 20px;
+  float: left;
+}
+.label-lg-l {
+  font-size: 17px;
+  float: left;
+  clear: both;
+}
+.float-right {
+  float: right !important;
+}
+.primary-text-spot {
+  color: #2196f3;
+  font-size: 17px;
+  font-weight: 500;
+}
+.btn-spot {
+  width: 80%;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  background-color: #2196f3;
+  border: 1px solid #2196f3;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #ebebeb;
+  transition: 0.5s;
+  outline: none !important;
+}
+.btn-spot-red {
+  background-color: #931f38;
+  color: #fff;
+  width: 80%;
+  padding: 5px 0;
+  border: 1px solid #931f38;
+  border-radius: 5px;
+  transition: 0.5s;
+  outline: none;
+  font-size: 12px;
+}
+p {
+  margin: 0;
+  padding: 0;
+}

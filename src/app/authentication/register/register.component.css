@@ -1,0 +1,17 @@
+.register {
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.jumbotron {
+  background-image: url(/../../../assets/pet-sitters.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  margin-top: 5%;
+  margin-bottom: 0;
+  padding: 0;
+}

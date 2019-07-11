@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-grey">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/dashboard">Home<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+  <button type="button" class="btn btn-light" type="submit" (click)="onAbout()">
+    About</button
+  >&nbsp;&nbsp;&nbsp;
+  <button *ngIf="isLoggedIn && !isPetSitter" class="btn btn-secondary" (click)="registerPetSitter()">
+    Become a Pet Sitter
+  </button>
+  &nbsp;&nbsp;
+  <button *ngIf="!isLoggedIn" class="btn btn-light" type="submit" (click)="onLogin()">
+    Login
+  </button>
+  <button *ngIf="!isLoggedIn" class="btn btn-light" type="submit" (click)="onRegister()">
+    Register
+  </button>
+  <div class="btn-group">
+    <button
+      *ngIf="isLoggedIn"
+      type="button"
+      class="btn btn-light dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Hello, {{ userFirstName }} &nbsp;<img *ngIf="userHasProfileImage" [src]="profileImg" alt="" width="35" height="35" />
+      <img *ngIf="!userHasProfileImage" src="assets/logo_user.png" alt="" width="35" height="35" />&nbsp;
+    </button>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" routerLink="/users/updateProfile">
+        My profile
+      </a>
+      <button *ngIf="isLoggedIn && isAdmin" class="dropdown-item" (click)="createServiceTypes()">
+        Create service types
+      </button>
+      <a class="dropdown-item" routerLink="/users/changePassword">
+        Change password
+      </a>
+      <a *ngIf="isPetSitter" class="dropdown-item" routerLink="/my-calendar">
+        My calendar
+      </a>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" type="submit" (click)="onLogout()">
+        Logout
+      </button>
+    </div>
+  </div>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</nav>
+<div class="jumbotron">
+  <router-outlet></router-outlet>
+</div>
